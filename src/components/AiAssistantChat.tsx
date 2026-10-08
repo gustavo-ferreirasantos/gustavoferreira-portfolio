@@ -24,7 +24,6 @@ interface Message {
 export function AiAssistantChat() {
   const { locale } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
-  const [, setHasOpenedOnce] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -98,9 +97,8 @@ export function AiAssistantChat() {
 
   // Listen to explanations triggered across the portfolio
   useEffect(() => {
-    const unsubscribe = onExplanation((term, explanation, projectName) => {
+    const unsubscribe = onExplanation((_term, explanation, projectName) => {
       setIsOpen(true);
-      setHasOpenedOnce(true);
       playUiSound('receive');
 
       const isEn = locale === 'en-US';
@@ -148,7 +146,6 @@ export function AiAssistantChat() {
   const toggleChat = () => {
     if (!isOpen) {
       playUiSound('open');
-      setHasOpenedOnce(true);
       setIsOpen(true);
       setTimeout(() => {
         inputRef.current?.focus();

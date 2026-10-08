@@ -1,7 +1,4 @@
-import { contacts, profile, resume } from '../data/contacts';
-import { education } from '../data/education';
-import { projects } from '../data/projects';
-import { skillGroups } from '../data/skills';
+import { contacts, profile } from '../data/contacts';
 import { generalExplanations } from './explanationStore';
 
 export type AiEmotion = 'headset' | 'listening' | 'talking' | 'thumbsup' | 'confused';
