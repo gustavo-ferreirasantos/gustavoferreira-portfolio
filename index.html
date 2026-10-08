@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var locale = 'pt-BR';
+        var theme = 'dark';
+        try {
+          var matchLocale = function (value) {
+            if (/^en/i.test(value)) return 'en-US';
+            if (/^pt/i.test(value)) return 'pt-BR';
+            return null;
+          };
+          var fromQuery = matchLocale(new URLSearchParams(location.search).get('lang') || '');
+          var stored = localStorage.getItem('locale');
+          if (fromQuery) {
+            locale = fromQuery;
+            localStorage.setItem('locale', fromQuery);
+          } else if (stored === 'pt-BR' || stored === 'en-US') {
+            locale = stored;
+          } else {
+            var languages = navigator.languages || [navigator.language];
+            for (var i = 0; i < languages.length; i++) {
+              var match = matchLocale(languages[i] || '');
+              if (match) {
+                locale = match;
+                break;
+              }
+            }
+          }
+          var storedTheme = localStorage.getItem('theme');
+          if (storedTheme === 'light' || storedTheme === 'dark') {
+            theme = storedTheme;
+          } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            theme = 'light';
+          }
+        } catch (error) {
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+        }
+        root.lang = locale;
+        root.dataset.theme = theme;
+      })();
+    </script>
+    <title>Gustavo Ferreira Santos — Desenvolvedor Backend Java</title>
+    <meta
+      name="description"
+      content="Portfólio de Gustavo Ferreira Santos, desenvolvedor backend com Java, Spring Boot, MySQL e Docker, com interesse em React. Projetos, habilidades, formação e contato."
+    />
+    <meta name="theme-color" content="#f4f6f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a1116" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Gustavo Ferreira Santos — Desenvolvedor Backend Java" />
+    <meta
+      property="og:description"
+      content="Desenvolvedor backend com Java, Spring Boot, MySQL e Docker. Projetos, formação e contato."
+    />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 1rem; font-family: system-ui, sans-serif">
+        Este portfólio precisa de JavaScript. Contato: gustavoferreirasantosg@gmail.com ·
+        <a href="https://github.com/gustavo-ferreirasantos">github.com/gustavo-ferreirasantos</a>
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+﻿.bonecoWrapper {
+  position: fixed;
+  z-index: 999;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
+}
+
+.bonecoWrapper[data-state='dragging'] {
+  cursor: grabbing;
+  transform: rotate(5deg) scale(1.06);
+}
+
+.bonecoWrapper[data-state='falling'] {
+  cursor: default;
+  pointer-events: none;
+  animation: glide-sway 1.8s ease-in-out infinite alternate;
+}
+
+.bonecoWrapper[data-state='landing'] {
+  transform: scale(1.1, 0.9);
+  transition: transform 0.15s var(--ease-out);
+}
+
+.characterContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.characterImg {
+  height: 98px; /* 20% increase from 80px */
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: height 0.15s var(--ease-out);
+}
+
+.characterImg[data-state='dragging'] {
+  height: 108px;
+}
+
+.characterImg[data-state='falling'] {
+  height: 145px; /* larger for parachute */
+}
+
+.characterImg[data-state='landing'] {
+  height: 86px;
+}
+
+.characterImg[data-state='explaining'] {
+  height: 96px;
+}
+
+.floorShadow {
+  width: 56px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  filter: blur(2.5px);
+  margin-top: -4px;
+}
+
+.speechBubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: -20px;
+  max-width: 300px;
+  padding: 0.75rem 1.75rem 0.75rem 0.95rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  border: 1.5px solid var(--color-accent);
+  box-shadow: var(--shadow-lg), 0 0 16px var(--color-glow-a);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  animation: pop-in 0.25s var(--ease-out);
+  pointer-events: auto;
+}
+
+.bubbleContent {
+  margin: 0;
+  text-align: left;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: transparent;
+  border: 0;
+  color: var(--color-ink-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: var(--radius-xs);
+}
+
+.closeBtn:hover {
+  color: var(--color-accent);
+}
+
+.speechBubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 45px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: var(--color-accent) transparent transparent transparent;
+}
+
+.hint {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-ink);
+  background: rgba(10, 17, 22, 0.85);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line-strong);
+  opacity: 0;
+  transition: opacity var(--duration-fast) ease;
+  pointer-events: none;
+}
+
+.bonecoWrapper:hover .hint {
+  opacity: 1;
+}
+
+@keyframes glide-sway {
+  0% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

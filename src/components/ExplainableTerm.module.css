@@ -1,0 +1,39 @@
+﻿.term {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  border: 0;
+  padding: 0 2px;
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition:
+    color var(--duration-fast) ease,
+    background var(--duration-fast) ease,
+    text-decoration-color var(--duration-fast) ease;
+}
+
+.term:hover {
+  color: var(--color-highlight);
+  background: var(--color-accent-soft);
+  text-decoration-style: solid;
+}
+
+.sparkle {
+  font-size: 0.65em;
+  color: var(--color-highlight);
+  opacity: 0.8;
+  vertical-align: super;
+  transition: transform var(--duration-fast) ease;
+}
+
+.term:hover .sparkle {
+  transform: rotate(45deg) scale(1.2);
+  opacity: 1;
+}

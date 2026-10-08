@@ -1,0 +1,112 @@
+.education {
+  padding-block: var(--section-gap) 0;
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.column {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-accent);
+  font-size: var(--text-lg);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-4);
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--color-line-strong);
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-sm);
+}
+
+.entry::before {
+  content: '';
+  position: absolute;
+  top: 1.7rem;
+  left: calc(-1 * var(--space-5) - 7px);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
+.period {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.badge {
+  padding: 0.1rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-size: var(--text-lg);
+}
+
+.place {
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+}
+
+.hours {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-highlight);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+}
+
+.topics li {
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+@media (min-width: 56em) {
+  .columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
